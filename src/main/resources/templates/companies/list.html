@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Companies</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+  <h1 class="mt-5">Companies</h1>
+  <a th:href="@{/companies/new}" class="btn btn-primary mb-3">Add New Company</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Full Name</th>
+      <th>Short Name</th>
+      <th>Registration Number</th>
+      <th>Registration Date</th>
+      <th>Org Registration</th>
+      <th>Org Legal Form</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="company : ${companies}">
+      <td th:text="${company.id}"></td>
+      <td th:text="${company.nameFull}"></td>
+      <td th:text="${company.nameShort}"></td>
+      <td th:text="${company.numberReg}"></td>
+      <td th:text="${company.dataReg}"></td>
+      <td th:text="${company.ogrRegistration.nameShort}"></td>
+      <td th:text="${company.orgLegForm.nameShort}"></td>
+      <td>
+        <a th:href="@{/companies/edit/{id}(id=${company.id})}" class="btn btn-sm btn-warning">Edit</a>
+        <a th:href="@{/companies/delete/{id}(id=${company.id})}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/}" class="btn btn-secondary">Back to Home</a>
+</div>
+</body>
+</html>

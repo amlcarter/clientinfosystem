@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Org Legal Forms</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+  <h1 class="mt-5">Org Legal Forms</h1>
+  <a th:href="@{/orgLegForms/new}" class="btn btn-primary mb-3">Add New Org Legal Form</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Full Name</th>
+      <th>Short Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orgLegForm : ${orgLegForms}">
+      <td th:text="${orgLegForm.id}"></td>
+      <td th:text="${orgLegForm.nameFull}"></td>
+      <td th:text="${orgLegForm.nameShort}"></td>
+      <td>
+        <a th:href="@{/orgLegForms/edit/{id}(id=${orgLegForm.id})}" class="btn btn-sm btn-warning">Edit</a>
+        <a th:href="@{/orgLegForms/delete/{id}(id=${orgLegForm.id})}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/}" class="btn btn-secondary">Back to Home</a>
+</div>
+</body>
+</html>
